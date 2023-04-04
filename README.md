@@ -37,6 +37,6 @@ Ao clonar o projeto, você terá duas pastas: server e outra client, siga os pas
 
 1. Abra o terminal na pasta raiz do projeto.
 2. Execute o comando "yarn install" para instalar as dependências do servidor.
-3. Preencha as variáveis de ambiente seguindo o exemplo em .env.example.
+3. Crie um arquivo .env e preencha as variáveis de ambiente seguindo o exemplo em .env.example.
 4. Após a instalação e configuração do .env, execute o comando "yarn prisma migrate dev" para executar as migrações do banco de dados (postgres).
 5. Execute o comando "yarn dev" para iniciar o servidor. Certifique-se de que o servidor está rodando antes de começar a codificar.

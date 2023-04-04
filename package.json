@@ -1,0 +1,8 @@
+{
+  "name": "Backend-Motors",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Group31-T13-M6/Backend-Motors.git",
+  "author": "<gabrielbsnsp@gmail.com>",
+  "license": "MIT"
+}

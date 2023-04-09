@@ -9,3 +9,33 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Announcement {
+  id String @id @default(uuid())
+  brand String
+  model String
+  year String @db.VarChar(4)
+  fuel Int
+  mileage Int
+  color String @db.VarChar(30)
+  price Int
+  fipe_table Int
+  description String @db.VarChar(320)
+  isActive Boolean @default(true)
+  images Image[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("announcement")
+}
+
+
+model Image {
+  id String @id @default(uuid())
+  url String
+  position Int
+  announcement Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  announcementId String @map("announcement_id")
+
+  @@map("image")
+}

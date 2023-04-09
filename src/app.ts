@@ -3,7 +3,7 @@ import cors from "cors";
 import "express-async-errors";
 import "reflect-metadata";
 import { errorHandler } from "./errors";
-import announcementRoutes from "./routes/announcement";
+import { announcementRoutes } from "./routes/announcement";
 
 const app = express();
 

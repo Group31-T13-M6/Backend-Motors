@@ -38,4 +38,4 @@ announcementRoutes.delete(
   deleteAnnouncementController
 );
 
-export default announcementRoutes;
+export { announcementRoutes };

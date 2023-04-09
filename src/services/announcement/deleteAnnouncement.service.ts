@@ -6,6 +6,8 @@ const deleteAnnouncementService = async (id: string): Promise<void> => {
       id,
     },
   });
+
+  return;
 };
 
 export { deleteAnnouncementService };

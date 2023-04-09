@@ -1,13 +1,9 @@
-import prismaClient from "../../server";
 import { IAnnouncement } from "../../interfaces/announcement";
 
-const getByAnnouncementIdService = async (id: string): Promise<IAnnouncement> => {
-  const announcement = await prismaClient.announcement.findUnique({
-    where: {
-      id: id,
-    },
-  })
-  return announcement
+const getByAnnouncementIdService = async (
+  announcement: IAnnouncement
+): Promise<IAnnouncement> => {
+  return announcement;
 };
 
-export { getByAnnouncementIdService }
+export { getByAnnouncementIdService };

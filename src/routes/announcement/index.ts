@@ -6,6 +6,7 @@ import {
   getAllAnnouncementsController,
   getByAnnouncementIDController,
 } from "../../controllers/announcement.controllers";
+import { isValidAnnouncementIdMiddleware } from "../../middlewares/announcements/validateId.middleware";
 import validateSchemaMiddleware from "../../middlewares/global/validateSchema.middleware";
 import { createAnnouncementSchema } from "../../schemas/announcements.schemas";
 
@@ -18,8 +19,23 @@ announcementRoutes.post(
 );
 
 announcementRoutes.get("", getAllAnnouncementsController);
-announcementRoutes.get("/:id", getByAnnouncementIDController);
-announcementRoutes.patch("/:id", updateAnnouncementController);
-announcementRoutes.delete("/:id", deleteAnnouncementController);
+
+announcementRoutes.get(
+  "/:id",
+  isValidAnnouncementIdMiddleware,
+  getByAnnouncementIDController
+);
+
+announcementRoutes.patch(
+  "/:id",
+  isValidAnnouncementIdMiddleware,
+  updateAnnouncementController
+);
+
+announcementRoutes.delete(
+  "/:id",
+  isValidAnnouncementIdMiddleware,
+  deleteAnnouncementController
+);
 
 export default announcementRoutes;

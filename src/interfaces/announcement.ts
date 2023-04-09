@@ -52,9 +52,16 @@ interface IAnnouncementUpdate {
   isActive?: boolean;
 }
 
+interface IGetAllAnnouncements {
+  announcements: IAnnouncement[];
+  total: number;
+  totalPage: number;
+}
+
 export {
   IAnnouncement,
   IAnnouncementRegister,
   IAnnouncementUpdate,
   IAnnouncementRegisterImage,
+  IGetAllAnnouncements,
 };

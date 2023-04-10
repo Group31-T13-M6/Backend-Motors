@@ -1,4 +1,4 @@
-import prismaClient from "../../server";
+import { prismaClient } from "../../server";
 
 const deleteAnnouncementService = async (id: string): Promise<void> => {
   await prismaClient.announcement.delete({

@@ -3,6 +3,7 @@ declare global {
     interface Request {
       validatedBody: IAnnouncementRegister;
       validatedAnnouncement: IAnnouncement;
+      validatedImage: any;
     }
   }
 }

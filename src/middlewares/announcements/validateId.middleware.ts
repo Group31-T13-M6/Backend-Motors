@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { AppError } from "../../errors";
-import prismaClient from "../../server";
+import { prismaClient } from "../../server";
 
 const isValidAnnouncementIdMiddleware = async (
   req: Request,

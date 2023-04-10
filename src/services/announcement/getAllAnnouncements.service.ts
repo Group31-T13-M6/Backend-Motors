@@ -1,4 +1,4 @@
-import prismaClient from "../../server";
+import { prismaClient } from "../../server";
 import { IGetAllAnnouncements } from "../../interfaces/announcement";
 
 const getAllAnnouncementService = async (

@@ -10,4 +10,4 @@ app.listen(PORT, () => {
   console.log(`App is running in http://localhost:${PORT}`);
 });
 
-export default prismaClient;
+export { prismaClient };

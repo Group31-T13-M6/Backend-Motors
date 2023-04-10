@@ -1,4 +1,10 @@
 import { Router } from "express";
+import { validateSchemaMiddleware } from "../../middlewares/global/validateSchema.middleware";
+import { isValidAnnouncementIdMiddleware } from "../../middlewares/announcements/validateId.middleware";
+import {
+  createAnnouncementSchema,
+  updateAnnouncementSchema,
+} from "../../schemas/announcements.schemas";
 import {
   createAnnouncementController,
   deleteAnnouncementController,
@@ -6,9 +12,6 @@ import {
   getAllAnnouncementsController,
   getByAnnouncementIDController,
 } from "../../controllers/announcement.controllers";
-import { isValidAnnouncementIdMiddleware } from "../../middlewares/announcements/validateId.middleware";
-import validateSchemaMiddleware from "../../middlewares/global/validateSchema.middleware";
-import { createAnnouncementSchema } from "../../schemas/announcements.schemas";
 
 const announcementRoutes = Router();
 
@@ -28,6 +31,7 @@ announcementRoutes.get(
 
 announcementRoutes.patch(
   "/:id",
+  validateSchemaMiddleware(updateAnnouncementSchema),
   isValidAnnouncementIdMiddleware,
   updateAnnouncementController
 );

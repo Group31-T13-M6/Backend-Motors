@@ -1,4 +1,4 @@
-import prismaClient from "../../server";
+import { prismaClient } from "../../server";
 import {
   IAnnouncement,
   IAnnouncementRegister,

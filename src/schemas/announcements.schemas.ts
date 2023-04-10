@@ -34,4 +34,16 @@ const createAnnouncementSchema = yup.object().shape({
     }),
 });
 
-export { createAnnouncementSchema };
+const updateAnnouncementSchema = yup.object().shape({
+  brand: yup.string().notRequired(),
+  model: yup.string().notRequired(),
+  year: yup.string().notRequired().max(4),
+  fuel: yup.number().positive().notRequired().max(3),
+  mileage: yup.number().positive().notRequired().max(999999),
+  color: yup.string().notRequired().max(30),
+  price: yup.number().positive().notRequired(),
+  fipe_table: yup.number().positive().notRequired(),
+  description: yup.string().notRequired().max(320),
+});
+
+export { createAnnouncementSchema, updateAnnouncementSchema };

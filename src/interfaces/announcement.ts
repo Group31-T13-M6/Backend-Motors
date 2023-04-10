@@ -52,6 +52,10 @@ interface IAnnouncementUpdate {
   isActive?: boolean;
 }
 
+interface IAnnouncementImageUpdate {
+  url?: string;
+}
+
 interface IGetAllAnnouncements {
   announcements: IAnnouncement[];
   total: number;
@@ -64,4 +68,5 @@ export {
   IAnnouncementUpdate,
   IAnnouncementRegisterImage,
   IGetAllAnnouncements,
+  IAnnouncementImageUpdate,
 };

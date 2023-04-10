@@ -46,4 +46,12 @@ const updateAnnouncementSchema = yup.object().shape({
   description: yup.string().notRequired().max(320),
 });
 
-export { createAnnouncementSchema, updateAnnouncementSchema };
+const updateAnnouncementImageSchema = yup.object().shape({
+  url: yup.string().notRequired(),
+});
+
+export {
+  createAnnouncementSchema,
+  updateAnnouncementSchema,
+  updateAnnouncementImageSchema,
+};

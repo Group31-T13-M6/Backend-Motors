@@ -5,6 +5,7 @@ import "reflect-metadata";
 import { errorHandler } from "./errors";
 import { announcementRoutes } from "./routes/announcement";
 import { userRoutes } from "./routes/users";
+import { sessionsRoutes } from "./routes/sessions";
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.use(cors());
 app.use("/announcements", announcementRoutes);
 
 app.use("/users", userRoutes);
+
+app.use("/login", sessionsRoutes);
 
 app.use(errorHandler);
 

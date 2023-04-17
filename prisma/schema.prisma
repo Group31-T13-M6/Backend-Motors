@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +9,75 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Announcement {
+  id String @id @default(uuid())
+  brand String
+  model String
+  year String @db.VarChar(4)
+  fuel Int
+  mileage Int
+  color String @db.VarChar(30)
+  price Int
+  fipe_table Int
+  description String @db.VarChar(320)
+  isActive Boolean @default(true)
+  images Image[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("announcement")
+}
+
+
+model Image {
+  id String @id @default(uuid())
+  url String
+  position Int
+  announcement Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  announcementId String @map("announcement_id")
+
+  @@map("image")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String @db.VarChar(50)
+  email String @db.VarChar(50) @unique
+  cpf String @db.VarChar(14)
+  phone_number String @db.VarChar(50)
+  date_birth DateTime
+  description String @db.VarChar(320)
+  password String
+  type_user TypeUser @default(Advertiser)
+  announcements Announcement[]
+  address Address?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("user")
+}
+
+enum TypeUser {
+  Advertiser
+  Buyer
+}
+
+model Address{
+  id String @id @default(uuid())
+  cep String @db.VarChar(12)
+  state String @db.VarChar(20)
+  city String @db.VarChar(50)
+  street String @db.VarChar(50)
+  number String @db.VarChar(50)
+  complement String @db.VarChar(320)
+  user   User @relation(fields: [userId], references: [id])
+  userId String @map("user_id") @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("address")
 }

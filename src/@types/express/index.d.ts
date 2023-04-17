@@ -1,7 +1,9 @@
 declare global {
   namespace Express {
     interface Request {
-      validatedBody: object;
+      validatedBody: IAnnouncementRegister;
+      validatedAnnouncement: IAnnouncement;
+      validatedImage: any;
     }
   }
 }

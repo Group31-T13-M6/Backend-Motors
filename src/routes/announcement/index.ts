@@ -3,64 +3,76 @@ import { validateSchemaMiddleware } from "../../middlewares/global/validateSchem
 import { isValidAnnouncementIdMiddleware } from "../../middlewares/announcements/validateId.middleware";
 import { isValidImageIdMiddleware } from "../../middlewares/images/validateId.middleware";
 import {
-  createAnnouncementSchema,
-  updateAnnouncementImageSchema,
-  updateAnnouncementSchema,
+    createAnnouncementSchema,
+    updateAnnouncementImageSchema,
+    updateAnnouncementSchema,
 } from "../../schemas/announcements.schemas";
 import {
-  createAnnouncementController,
-  deleteAnnouncementController,
-  updateAnnouncementController,
-  getAllAnnouncementsController,
-  getByAnnouncementIDController,
+    createAnnouncementController,
+    deleteAnnouncementController,
+    updateAnnouncementController,
+    getAllAnnouncementsController,
+    getByAnnouncementIDController,
 } from "../../controllers/announcement.controllers";
 import {
-  deleteAnnouncementImageController,
-  updateAnnouncementImageController,
+    deleteAnnouncementImageController,
+    updateAnnouncementImageController,
 } from "../../controllers/images.controllers";
+import { validateAuthUserMiddleware } from "../../middlewares/global/validateAuthUser.middlewares";
+import { validateIsOwnerAnnouncementMiddleware } from "../../middlewares/announcements/validateIsOwnerAnnouncement.middlewares";
+import { validateIsOwnerImageMiddleware } from "../../middlewares/images/validadeIsOwnerImage.middlewares";
 
 const announcementRoutes = Router();
 
 announcementRoutes.post(
-  "",
-  validateSchemaMiddleware(createAnnouncementSchema),
-  createAnnouncementController
+    "",
+    validateAuthUserMiddleware,
+    validateSchemaMiddleware(createAnnouncementSchema),
+    createAnnouncementController
 );
 
 announcementRoutes.get("", getAllAnnouncementsController);
 
 announcementRoutes.get(
-  "/:id",
-  isValidAnnouncementIdMiddleware,
-  getByAnnouncementIDController
+    "/:id",
+    isValidAnnouncementIdMiddleware,
+    getByAnnouncementIDController
 );
 
 announcementRoutes.patch(
-  "/:id",
-  validateSchemaMiddleware(updateAnnouncementSchema),
-  isValidAnnouncementIdMiddleware,
-  updateAnnouncementController
+    "/:id",
+    validateAuthUserMiddleware,
+    validateSchemaMiddleware(updateAnnouncementSchema),
+    isValidAnnouncementIdMiddleware,
+    validateIsOwnerAnnouncementMiddleware,
+    updateAnnouncementController
 );
 
 announcementRoutes.delete(
-  "/:id",
-  isValidAnnouncementIdMiddleware,
-  deleteAnnouncementController
+    "/:id",
+    validateAuthUserMiddleware,
+    isValidAnnouncementIdMiddleware,
+    validateIsOwnerAnnouncementMiddleware,
+    deleteAnnouncementController
 );
 
 // Images Route
 
 announcementRoutes.patch(
-  "/image/:id",
-  validateSchemaMiddleware(updateAnnouncementImageSchema),
-  isValidImageIdMiddleware,
-  updateAnnouncementImageController
+    "/image/:id",
+    validateAuthUserMiddleware,
+    validateSchemaMiddleware(updateAnnouncementImageSchema),
+    isValidImageIdMiddleware,
+    validateIsOwnerImageMiddleware,
+    updateAnnouncementImageController
 );
 
 announcementRoutes.delete(
-  "/image/:id",
-  isValidImageIdMiddleware,
-  deleteAnnouncementImageController
+    "/image/:id",
+    validateAuthUserMiddleware,
+    isValidImageIdMiddleware,
+    validateIsOwnerImageMiddleware,
+    deleteAnnouncementImageController
 );
 
 export { announcementRoutes };

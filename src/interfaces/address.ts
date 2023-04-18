@@ -8,6 +8,15 @@ interface IAddressRegister {
     userId: string;
 }
 
+interface IAddressUpdate {
+    cep?: string;
+    state?: string;
+    city?: string;
+    street?: string;
+    number?: string;
+    complement?: string;
+}
+
 interface IAddress {
     id: string;
     cep: string;
@@ -18,4 +27,4 @@ interface IAddress {
     complement: string;
 }
 
-export { IAddressRegister, IAddress };
+export { IAddressRegister, IAddress, IAddressUpdate };

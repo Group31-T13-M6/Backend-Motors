@@ -25,4 +25,9 @@ interface IUser {
     address?: IAddress;
 }
 
-export { IUserRegister, IUser };
+interface IUserLogin {
+    email: string;
+    password: string;
+}
+
+export { IUserRegister, IUser, IUserLogin };

@@ -9,4 +9,13 @@ const createAddressSchema = yup.object().shape({
     complement: yup.string(),
 });
 
-export { createAddressSchema };
+const updateAddressSchema = yup.object().shape({
+    cep: yup.string(),
+    state: yup.string(),
+    city: yup.string(),
+    street: yup.string(),
+    number: yup.string(),
+    complement: yup.string(),
+});
+
+export { createAddressSchema, updateAddressSchema };

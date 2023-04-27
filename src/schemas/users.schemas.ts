@@ -10,7 +10,7 @@ const createUserSchema = yup.object().shape({
     description: yup.string().required().max(320),
     type_user: yup.string().oneOf(["Advertiser", "Buyer"]).required(),
     password: yup.string().min(6).required(),
-    address: createAddressSchema.required(),
+    address: createAddressSchema.required(),    
 });
 
 export { createUserSchema };

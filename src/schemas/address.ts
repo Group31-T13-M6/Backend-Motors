@@ -6,7 +6,7 @@ const createAddressSchema = yup.object().shape({
     city: yup.string().required(),
     street: yup.string().required(),
     number: yup.string().required(),
-    complement: yup.string(),
+    complement: yup.string().required(),
 });
 
 const updateAddressSchema = yup.object().shape({

@@ -8,6 +8,7 @@ import { updateAddressSchema } from "../../schemas/address";
 import { createUserSchema } from "../../schemas/users.schemas";
 import {
   createUserController,
+  deleteUserController,
   getUserController,
 } from "../../controllers/users.controllers";
 
@@ -28,6 +29,13 @@ userRoutes.patch(
   validateSchemaMiddleware(updateAddressSchema),
   validateIsOwnerMiddleware,
   updateAddressController
+);
+
+userRoutes.delete(
+  "/:id",
+  validateAuthUserMiddleware,
+  validateIsOwnerMiddleware,
+  deleteUserController
 );
 
 export { userRoutes };

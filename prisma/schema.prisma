@@ -74,8 +74,8 @@ model Address{
   street String @db.VarChar(50)
   number String @db.VarChar(50)
   complement String @db.VarChar(320)
-  user   User @relation(fields: [userId], references: [id])
-  userId String @map("user_id") @unique
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade )
+  userId String @map("user_id") @unique 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

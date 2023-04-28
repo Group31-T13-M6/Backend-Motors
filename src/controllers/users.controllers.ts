@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { IUserRegister } from "../interfaces/users";
 import { registerUserService } from "../services/users/registerUser.service";
 import { getUserService } from "../services/users/getUser.service";
+import { deleteUserService } from "../services/users/delete.service";
 
 const getUserController = async (req: Request, res: Response) => {
   const userId = req.validateAuth.sub;
@@ -15,4 +16,10 @@ const createUserController = async (req: Request, res: Response) => {
   return res.status(201).json(data);
 };
 
-export { createUserController, getUserController };
+const deleteUserController = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  await deleteUserService(id);
+  return res.status(204).send({});
+};
+
+export { createUserController, getUserController, deleteUserController };

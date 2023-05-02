@@ -5,11 +5,12 @@ import { validateSchemaMiddleware } from "../../middlewares/global/validateSchem
 import { validateIsOwnerMiddleware } from "../../middlewares/user/validadeIsOwner.middleware";
 import { validateEmailMiddlewares } from "../../middlewares/user/validateEmail.middlewares";
 import { updateAddressSchema } from "../../schemas/address";
-import { createUserSchema } from "../../schemas/users.schemas";
+import { createUserSchema, updateUserSchema } from "../../schemas/users.schemas";
 import {
   createUserController,
   deleteUserController,
   getUserController,
+  updateUserController,
 } from "../../controllers/users.controllers";
 
 const userRoutes = Router();
@@ -29,6 +30,13 @@ userRoutes.patch(
   validateSchemaMiddleware(updateAddressSchema),
   validateIsOwnerMiddleware,
   updateAddressController
+);
+
+userRoutes.patch(
+  "/:id",
+  validateAuthUserMiddleware,
+  validateSchemaMiddleware(updateUserSchema),
+  updateUserController
 );
 
 userRoutes.delete(

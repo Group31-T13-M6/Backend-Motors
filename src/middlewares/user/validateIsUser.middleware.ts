@@ -13,7 +13,6 @@ const validateIsUserMiddleware = async (
     throw new AppError("User id is required");
   }
 
-  console.log(id);
   const user = await prismaClient.user.findUnique({
     where: { id },
     include: {
@@ -21,7 +20,6 @@ const validateIsUserMiddleware = async (
       address: true,
     },
   });
-
   
   if (!user) {
     throw new AppError("User not found", 404);

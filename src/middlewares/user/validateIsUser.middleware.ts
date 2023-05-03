@@ -16,15 +16,19 @@ const validateIsUserMiddleware = async (
   const user = await prismaClient.user.findUnique({
     where: { id },
     include: {
-      announcements: true,
+      announcements: {
+        include: {
+          images:true
+        }
+      },
       address: true,
     },
   });
-  
+
   if (!user) {
     throw new AppError("User not found", 404);
   }
-  
+
   delete user.address.userId;
   delete user.password;
   req.validateAuth = user;

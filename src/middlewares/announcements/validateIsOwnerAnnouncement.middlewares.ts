@@ -9,7 +9,7 @@ const validateIsOwnerAnnouncementMiddleware = async (
     const announcement = req.validatedAnnouncement;
     const tokenId = req.validateAuth.sub;
 
-    if (announcement.userId !== tokenId) {
+    if (announcement.user.id !== tokenId) {
         throw new AppError("Action not valid!", 401);
     }
 

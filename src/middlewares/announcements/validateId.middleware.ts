@@ -20,8 +20,17 @@ const isValidAnnouncementIdMiddleware = async (
           position: true,
         },
       },
+      user: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+        },
+      },
     },
   });
+
+  delete isAnnouncement.userId;
 
   if (!isAnnouncement) {
     throw new AppError("Params 'id' is not valid uuid announcement.", 401);

@@ -32,7 +32,7 @@ const createSessionsService = async (data: IUserLogin) => {
     }
   );
 
-  return { token };
+  return { token, typeUser: isUser.type_user };
 };
 
 export { createSessionsService };

@@ -7,8 +7,12 @@ import { updateUserService } from "../services/users/updateUser.service";
 
 const getUserController = async (req: Request, res: Response) => {
   const userId = req.validateAuth.sub;
-  const data = await getUserService(req.validateAuth.sub);
+  const data = await getUserService(userId);
   return res.status(200).json(data);
+};
+
+const getUserPerIdController = async (req: Request, res: Response) => {
+  return res.status(200).json(req.validateAuth);
 };
 
 const createUserController = async (req: Request, res: Response) => {
@@ -26,13 +30,13 @@ const deleteUserController = async (req: Request, res: Response) => {
 const updateUserController = async (req: Request, res: Response) => {
   const { validatedBody, params } = req;
   const data = await updateUserService(params.id, validatedBody);
-
   return res.status(204).json(data);
 };
 
 export {
   createUserController,
   getUserController,
+  getUserPerIdController,
   deleteUserController,
   updateUserController,
 };

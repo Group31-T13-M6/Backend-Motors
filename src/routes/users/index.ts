@@ -5,17 +5,24 @@ import { validateSchemaMiddleware } from "../../middlewares/global/validateSchem
 import { validateIsOwnerMiddleware } from "../../middlewares/user/validadeIsOwner.middleware";
 import { validateEmailMiddlewares } from "../../middlewares/user/validateEmail.middlewares";
 import { updateAddressSchema } from "../../schemas/address";
-import { createUserSchema, updateUserSchema } from "../../schemas/users.schemas";
+import {
+  createUserSchema,
+  updateUserSchema,
+} from "../../schemas/users.schemas";
 import {
   createUserController,
   deleteUserController,
   getUserController,
+  getUserPerIdController,
   updateUserController,
 } from "../../controllers/users.controllers";
+import { validateIsUserMiddleware } from "../../middlewares/user/validateIsUser.middleware";
 
 const userRoutes = Router();
 
 userRoutes.get("", validateAuthUserMiddleware, getUserController);
+
+userRoutes.get("/:id", validateIsUserMiddleware, getUserPerIdController);
 
 userRoutes.post(
   "",

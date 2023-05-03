@@ -17,6 +17,12 @@ const getAllAnnouncementService = async (
             position: true,
           },
         },
+        user: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
       },
     }),
     prismaClient.announcement.count(),

@@ -27,6 +27,19 @@ const isValidAnnouncementIdMiddleware = async (
           description: true,
         },
       },
+      comments: {
+        select: {
+          content: true,
+          createdAt: true,
+          updatedAt: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
+        },
+      },
     },
   });
 

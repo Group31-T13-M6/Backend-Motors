@@ -34,6 +34,22 @@ const createAnnouncementSchema = yup.object().shape({
     }),
 });
 
+const announcementSchema = yup.object().shape({
+  id: yup.string().required(),
+  brand: yup.string().required(),
+  model: yup.string().required(),
+  year: yup.string().required().max(4),
+  fuel: yup.number().positive().required().max(3),
+  mileage: yup.number().positive().required().max(999999),
+  color: yup.string().required().max(30),
+  price: yup.number().positive().required(),
+  fipe_table: yup.number().positive().required(),
+  description: yup.string().required().max(320),
+  images: yup.array(createAnnouncementImages),
+  createdAt: yup.date().required(),
+  updatedAt: yup.date().required(),
+});
+
 const updateAnnouncementSchema = yup.object().shape({
   brand: yup.string().notRequired(),
   model: yup.string().notRequired(),
@@ -54,4 +70,5 @@ export {
   createAnnouncementSchema,
   updateAnnouncementSchema,
   updateAnnouncementImageSchema,
+  announcementSchema
 };

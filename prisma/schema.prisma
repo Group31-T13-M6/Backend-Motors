@@ -24,6 +24,7 @@ model Announcement {
   description String @db.VarChar(320)
   isActive Boolean @default(true)
   images Image[]
+  comments Comment[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -31,7 +32,6 @@ model Announcement {
 
   @@map("announcement")
 }
-
 
 model Image {
   id String @id @default(uuid())
@@ -54,6 +54,7 @@ model User {
   password String
   type_user TypeUser @default(Advertiser)
   announcements Announcement[]
+  comments Comment[]
   address Address?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -80,4 +81,17 @@ model Address{
   updatedAt DateTime @updatedAt
 
   @@map("address")
+}
+
+model Comment {
+  id String @id @default(uuid())
+  content String
+  announcement Announcement @relation(fields: [announcementId], references: [id], onDelete: Cascade)
+  announcementId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("comment")
 }

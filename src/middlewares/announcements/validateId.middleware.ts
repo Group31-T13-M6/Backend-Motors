@@ -10,7 +10,7 @@ const isValidAnnouncementIdMiddleware = async (
   const { id } = req.params;
   const isAnnouncement = await prismaClient.announcement.findUnique({
     where: {
-      id,
+      id: id,
     },
     include: {
       images: {
@@ -25,6 +25,19 @@ const isValidAnnouncementIdMiddleware = async (
           id: true,
           name: true,
           description: true,
+        },
+      },
+      comments: {
+        select: {
+          content: true,
+          createdAt: true,
+          updatedAt: true,
+          user: {
+            select: {
+              id: true,
+              name: true,
+            },
+          },
         },
       },
     },

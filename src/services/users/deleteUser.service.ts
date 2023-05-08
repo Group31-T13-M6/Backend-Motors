@@ -9,8 +9,6 @@ const deleteUserService = async (id: string) => {
       },
     });
   } catch (error) {
-    console.log(error);
-
     throw new AppError("Unable to delete user");
   }
 };

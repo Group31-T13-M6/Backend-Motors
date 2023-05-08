@@ -1,20 +1,24 @@
+import express from "express";
+import cors from "cors";
 import "express-async-errors";
 import "reflect-metadata";
-import express, { Request, Response } from "express";
-import cors from "cors";
 import { errorHandler } from "./errors";
+import { announcementRoutes } from "./routes/announcement";
+import { userRoutes } from "./routes/users";
+import { sessionsRoutes } from "./routes/sessions";
+import { commentsRoutes } from "./routes/comments";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-// Test: Visualizar se o servidor está rodando corretamente
-app.get("/test", async (req: Request, res: Response) => {
-  return res.status(200).json("Hello world");
-});
+app.use("/announcements", announcementRoutes);
+app.use("/comments", commentsRoutes);
 
-// Rotas serão postas aqui, exemplo: app.use(/users, userRoutes)
+app.use("/users", userRoutes);
+
+app.use("/login", sessionsRoutes);
 
 app.use(errorHandler);
 

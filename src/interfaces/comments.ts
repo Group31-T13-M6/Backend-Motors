@@ -1,6 +1,3 @@
-import { IAnnouncement } from "./announcement";
-import { IUser } from "./users";
-
 interface IComment {
   id: string;
   content: string;

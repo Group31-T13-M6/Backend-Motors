@@ -29,6 +29,7 @@ const isValidAnnouncementIdMiddleware = async (
       },
       comments: {
         select: {
+          id: true,
           content: true,
           createdAt: true,
           updatedAt: true,
@@ -38,6 +39,9 @@ const isValidAnnouncementIdMiddleware = async (
               name: true,
             },
           },
+        },
+        orderBy: {
+          createdAt: "desc",
         },
       },
     },

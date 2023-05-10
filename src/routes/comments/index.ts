@@ -31,11 +31,13 @@ commentsRoutes.get("/:commentId", getByCommentIDController);
 commentsRoutes.patch(
   "/:commentId",
   isValidCommentIdMiddleware,
+  validateAuthUserMiddleware,
   validateSchemaMiddleware(updateAndRegisterCommentSchema),
   updateCommentController
 );
 commentsRoutes.delete(
   "/:commentId",
+  validateAuthUserMiddleware,
   isValidCommentIdMiddleware,
   deleteCommentController
 );

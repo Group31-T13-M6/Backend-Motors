@@ -1,4 +1,3 @@
-import { error } from "console";
 import { IComment } from "../../interfaces/comments";
 import { prismaClient } from "../../server";
 import { AppError } from "../../errors";
@@ -28,6 +27,7 @@ const getByCommentIdService = async (commentId: string): Promise<IComment> => {
   if (!comment) {
     throw new AppError("Params 'id' is not valid uuid comments.", 401);
   }
+
   return comment;
 };
 

@@ -16,7 +16,7 @@ const getAllCommentsByAnnouncementIdService = async (
         },
       },
       orderBy: {
-        id: "desc"
+        id: "desc",
       },
       include: {
         user: {

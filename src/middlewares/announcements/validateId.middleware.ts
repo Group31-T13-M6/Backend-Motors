@@ -29,6 +29,7 @@ const isValidAnnouncementIdMiddleware = async (
       },
       comments: {
         select: {
+          id: true,
           content: true,
           createdAt: true,
           updatedAt: true,

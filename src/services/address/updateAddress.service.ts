@@ -6,7 +6,7 @@ const updateAddressService = async (data: IAddressUpdate, id: string) => {
   const isEmpty = Object.keys(data).length <= 0;
 
   if (isEmpty) {
-    throw new AppError("your request body is empty.", 400);
+    throw new AppError("your request body is empty.", 401);
   }
 
   const address = await prismaClient.address.update({
